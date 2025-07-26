@@ -1,0 +1,20 @@
+name: SEO Check Scripts
+
+on:
+  workflow_dispatch: # Se ejecuta manualmente
+
+jobs:
+  run-scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Instalar dependencias
+        run: pip install requests beautifulsoup4
+      - name: Ejecutar scripts SEO
+        run: |
+          python scripts/titulos_meta.py
+          python scripts/robots_check.py
